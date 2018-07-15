@@ -1,0 +1,48 @@
+<project name="developerguide" basedir="." default="usage">
+        <property name="src.dir" value="src">
+        </property>
+        <property name="lib.dir" value="../lib/default">
+        </property>
+        <property name="application.name" value="customer">
+        </property>
+        <property name="build.dir" value="classes/production/DeveloperguideAnnotation">
+        </property>
+
+        <path id="project.classpath">
+                <fileset dir="${lib.dir}">
+                  <include name="hibernate-3.2/lib_min/*.jar" />
+                  <include name="hibernate-annotations-3.3.0.GA/lib/*.jar" />
+                  <include name="hibernate-annotations-3.3.0.GA/*.jar" />
+                  <include name="log4j-1.2.14.jar" />
+                </fileset>
+        </path>
+
+        <target name="usage">
+                <echo message="" />
+                <echo message="${application.name} build file" />
+                <echo message="-----------------------------------" />
+                <echo message="" />
+                <echo message="Available targets are:" />
+                <echo message="" />
+                <echo message="clean     --> Delete all files in build folder" />
+                <echo message="build     --> Build the application" />
+
+                <echo message="" />
+                <echo message="${ant.home}" />
+        </target>
+
+
+        <target name="instrument" depends="">
+                <taskdef name="instrument" classname="org.hibernate.tool.instrument.cglib.InstrumentTask">
+                        <classpath path="${build.dir}" />
+                        <classpath refid="project.classpath" />
+                </taskdef>
+
+                <instrument verbose="true">
+                        <fileset dir="${build.dir}/de/laliluna/other/query">
+                                <include name="**/*.class" />
+                                <<exclude name="**/*Test.class" />
+                        </fileset>
+                </instrument>
+        </target>
+</project>

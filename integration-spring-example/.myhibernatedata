@@ -1,0 +1,21 @@
+#
+#Tue May 22 21:52:18 CEST 2007
+genBasicCompId=false
+sessionFactoryName=
+profile=
+daoSFId=
+version=3.1
+jndiPath=
+springDaoFile=
+useJavaTypes=true
+keyGenerator=
+libInstallFolder=<no jars/zips in selected libraries>
+addLibs2Project=true
+genVersionTag=false
+sessionFactoryId=
+basePersistenceClass=
+reSettingsFile=
+configFile=/HibernateSpring/src/hibernate.cfg.xml
+createConfigFile=false
+addLibs2Classpath=true
+baseDaoClass=

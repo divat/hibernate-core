@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+          "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+          "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+
+	<session-factory>
+		<property name="myeclipse.connection.profile">
+			learninghibernate
+		</property>
+		<!--  postgre SQL configuration-->
+		<property name="connection.url">
+			jdbc:postgresql://localhost:5432/learninghibernate
+		</property>
+		<property name="connection.username">postgres</property>
+		<property name="connection.password">p</property>
+		<property name="connection.driver_class">
+			org.postgresql.Driver
+		</property>
+		<property name="dialect">
+			org.hibernate.dialect.PostgreSQLDialect
+		</property>
+
+		<!--  mysql configuration 
+			<property name="connection.url">jdbc:mysql://localhost/learninghibernate</property>
+			<property name="connection.username">root</property>
+			<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+			<property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+			<property name="connection.password">r</property>
+		-->
+		<property name="cache.provider_class">
+			org.hibernate.cache.EhCacheProvider
+		</property>
+		<property name="current_session_context_class">thread</property>
+		<property name="transaction.factory_class">
+			org.hibernate.transaction.JDBCTransactionFactory
+		</property>
+		<property name="show_sql">false</property>
+		<property name="hbm2ddl.auto">create</property>
+		<property name="transaction.auto_close_session">true</property>
+		<property name="default_schema">annotation</property>
+		
+
+<!-- 	change the mapping if you want to use xml mapping	
+	 	<mapping resource="de/laliluna/blob/Document.hbm.xml"/>
+	 	<mapping resource="de/laliluna/blob/Image.hbm.xml"/>
+
+ -->
+		<mapping class="de.laliluna.blob.Document" />
+		<mapping class="de.laliluna.blob.Image" />
+
+	</session-factory>
+
+</hibernate-configuration>

@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="de.laliluna.blob">
+  <class name="Image" table="image">
+    <id name="id" type="integer">
+      <column name="id" />
+      <generator class="sequence">
+        <param name="sequence">image_id_seq</param>
+      </generator>
+    </id>
+    <property name="name"></property>
+    <property name="imageAsBytea" type="org.hibernate.type.BinaryType"></property>
+    <property name="imageAsBlob" ></property>
+    <property name="imageAsBlob2" type="java.sql.Blob"></property>
+  </class>
+</hibernate-mapping>

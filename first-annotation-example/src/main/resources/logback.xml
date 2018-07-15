@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <Pattern>%d{HH:mm:ss.SSS} %-5level %logger{36} - %msg%n</Pattern>
+        </encoder>
+    </appender>
+
+
+    <logger name="org.hibernate" level="info"/>
+
+    <!--log HQL query parser activity-->
+    <logger name="org.hibernate.hql.ast.AST" level="info"/>
+
+    <!--### log just the SQL-->
+    <logger name="org.hibernate.SQL" level="info"/>
+
+    <!--### log JDBC bind parameters ###-->
+    <logger name="org.hibernate.type" level="info"/>
+
+    <!--### log schema export/update ###-->
+    <logger name="org.hibernate.tool.hbm2ddl" level="info"/>
+
+    <!--### log HQL parse trees-->
+    <logger name="org.hibernate.hql" level="info"/>
+
+    <!--### log cache activity ###-->
+    <logger name="org.hibernate.cache" level="info"/>
+
+    <!--### log transaction activity-->
+    <logger name="org.hibernate.transaction" level="info"/>
+
+    <!--### log JDBC resource acquisition-->
+    <logger name="org.hibernate.jdbc" level="info"/>
+
+    <!--### enable the following line if you want to track down connection ###-->
+    <!--### leakages when using DriverManagerConnectionProvider ###-->
+    <logger name="org.hibernate.connection.DriverManagerConnectionProvider" level="info"/>
+
+    <root level="debug">
+        <appender-ref ref="STDOUT" />
+    </root>
+</configuration>

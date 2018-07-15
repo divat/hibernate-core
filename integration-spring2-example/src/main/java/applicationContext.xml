@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+http://www.springframework.org/schema/beans 
+http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+http://www.springframework.org/schema/tx 
+http://www.springframework.org/schema/tx/spring-tx-2.0.xsd
+http://www.springframework.org/schema/aop 
+http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
+
+	<bean id="datasource"
+		class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="driverClass" value="org.postgresql.Driver" />
+		<property name="jdbcUrl"
+			value="jdbc:postgresql://localhost:5432/learninghibernate" />
+		<property name="user" value="postgres" />
+		<property name="password" value="p" />
+		<property name="minPoolSize" value="2" />
+		<property name="maxPoolSize" value="4" />
+
+	</bean>
+
+	<bean id="hibernateSessionFactory"
+		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+		<property name="dataSource" ref="datasource" />
+		<property name="configLocation">
+			<value>classpath:hibernate.cfg.xml</value>
+		</property>
+		<!-- alternatively you can add the configuration here as well
+			<property name="annotatedClasses">
+			<list>
+			<value>de.laliluna.example.domain.Hedgehog</value>
+			<value>de.laliluna.example.domain.WinterAddress</value>
+			</list>
+			</property>
+			<property name="hibernateProperties">
+			<value>
+			hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
+			hibernate.cache.provider_class=org.hibernate.cache.EhCacheProvider
+			</value>
+			</property>
+		-->
+	</bean>
+
+	<bean id="hedgehogService"
+		class="de.laliluna.example.service.HedgehogServiceImp">
+		<property name="hedgehogDao" ref="hedgehogDao" />
+	</bean>
+
+	<bean id="hedgehogDao"
+		class="de.laliluna.example.domain.HedgehogDao">
+		<constructor-arg ref="hibernateSessionFactory" />
+	</bean>
+	
+		<!-- logging aspect -->
+	<aop:aspectj-autoproxy />
+
+	<bean id="loggingAspect" class="de.laliluna.example.advice.LoggingAspect"></bean>
+	
+	
+	<!--  Transaction handling -->
+	
+	<tx:annotation-driven transaction-manager="txManager"/>
+	
+	<bean id="txManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager" >
+		<property name="sessionFactory" ref="hibernateSessionFactory"/>
+	</bean>
+</beans>

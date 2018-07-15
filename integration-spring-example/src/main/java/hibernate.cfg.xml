@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+          "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+          "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+	<session-factory>
+		<property name="dialect">
+			org.hibernate.dialect.PostgreSQLDialect
+		</property>
+		<property name="cache.provider_class">
+			org.hibernate.cache.EhCacheProvider
+		</property>
+		<!--<property name="hbm2ddl.auto">update</property>-->
+		<mapping class="de.laliluna.example.domain.Hedgehog" />
+		<mapping class="de.laliluna.example.domain.WinterAddress" />		
+	</session-factory>
+
+</hibernate-configuration>

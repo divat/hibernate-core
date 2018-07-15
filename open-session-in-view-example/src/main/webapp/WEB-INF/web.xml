@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.4" 
+	xmlns="http://java.sun.com/xml/ns/j2ee" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee 
+	http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+  <filter>
+   <description>opens and closes a session</description>
+   <display-name>Hibernate session filter</display-name>
+   <filter-name>hibernatefilter</filter-name>
+   <filter-class>de.laliluna.hibernate.SessionFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>hibernatefilter</filter-name>
+    <servlet-name>Controller</servlet-name>
+  </filter-mapping>
+  <listener>
+    <description>Initialises the Hibernate configuration during startup and closes it during shutdown</description>
+    <listener-class>de.laliluna.hibernate.ServletListener</listener-class>
+  </listener>
+  <servlet>
+    <description>Controller calls bussiness logic and forwards to JSPs</description>
+    <display-name>Controller Servlet for the web application</display-name>
+    <servlet-name>Controller</servlet-name>
+    <servlet-class>de.laliluna.webstock.web.Controller</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>Controller</servlet-name>
+    <url-pattern>*.html</url-pattern>
+  </servlet-mapping>
+</web-app>
